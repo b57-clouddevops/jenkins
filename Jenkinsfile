@@ -13,7 +13,8 @@ pipeline {
         }
         stage("Third Stage") {
             steps {
-                asdfsafd "We will do CICD Tomorrow using Jenkins"
+                echo "We will do CICD Tomorrow using Jenkins"
+                exit 1
             }
         }
     }
