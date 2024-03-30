@@ -11,7 +11,7 @@ pipeline {
                 echo "We will do CICD Tomorrow using Jenkins"
             }
         }
-        stage("Second Stage") {
+        stage("Third Stage") {
             steps {
                 asdfsafd "We will do CICD Tomorrow using Jenkins"
             }
