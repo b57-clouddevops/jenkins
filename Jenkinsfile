@@ -47,6 +47,24 @@ pipeline {
                 echo "We will do CICD Tomorrow using Jenkins"
             }
         }
+        stage("Unit Testing") {
+            steps {
+                sh "echo Unit Testing In Progress"
+                sh "sleep 1000"                
+            }
+        }
+        stage("Integration Testing") {
+            steps {
+                sh "echo Integration Testing In Progress"
+                sh "sleep 1000"                
+            }
+        }
+        stage("Functional Testing") {
+            steps {
+                sh "echo Functional Testing In Progress"
+                sh "sleep 1000"                
+            }
+        }
     }
 }
 
