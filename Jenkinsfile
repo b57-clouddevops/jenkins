@@ -30,10 +30,14 @@ pipeline {
             environment {
                 ENV_URL = "stage.google.com"                // Local Variable :Scope of the local variable is confined to this stage only
             } 
+            tools {
+                maven 'mvn-390' 
+            }
             steps {
                 sh "echo We will do CICD Tomorrow using Jenkins"
                 sh "echo ${ENV_URL}"
                 sh "env"
+                sh "mvn --version"
                 sh "sleep 1"
             }
         }
