@@ -13,3 +13,8 @@ We are going to place the learning of our Jenkins starting from basics to advanc
 
 
 Imp : Stages on jenkins are sequential, that means stage 2 will only run after the completion of stage-1 
+
+
+Jenkins is all about plugins ?
+A plug-in is nothing but a feature, if you want a feature, install that plugin.
+
