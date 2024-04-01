@@ -12,7 +12,7 @@ pipeline {
         }
         stage("Second Stage") {
             environment {
-                ENV_URL = "stage.google.com"                     // Local Variable :Scope of the local variable is confined to this stage only
+                ENV_URL = "stage.google.com"                // Local Variable :Scope of the local variable is confined to this stage only
             } 
             steps {
                 sh "echo We will do CICD Tomorrow using Jenkins"
