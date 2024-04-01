@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
         ENV_URL = "pipeline.google.com"                     // Global Variable : All the stages of the pipeline can inherit this
+        SSHCRED = credentials('SSHCRED')
     } 
     stages {
         stage("First Stage") {
