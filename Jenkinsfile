@@ -18,7 +18,6 @@ pipeline {
         stage("Third Stage") {
             steps {
                 echo "We will do CICD Tomorrow using Jenkins"
-                exit 1
             }
         }
     }
