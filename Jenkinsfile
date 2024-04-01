@@ -4,7 +4,10 @@ pipeline {
         ENV_URL = "pipeline.google.com"                     // Global Variable : All the stages of the pipeline can inherit this
         SSHCRED = credentials('SSHCRED')
     } 
-    options { buildDiscarder(logRotator(numToKeepStr: '3')) }
+    options { 
+        buildDiscarder(logRotator(numToKeepStr: '3')) 
+        disableConcurrentBuilds()
+    }
     stages {
         stage("First Stage") {
             steps {
