@@ -7,6 +7,7 @@ pipeline {
     options { 
         buildDiscarder(logRotator(numToKeepStr: '3')) 
         disableConcurrentBuilds()
+        timeout(time: 1, unit: 'MINUTES')
     }
     stages {
         stage("First Stage") {
@@ -23,7 +24,7 @@ pipeline {
                 sh "echo We will do CICD Tomorrow using Jenkins"
                 sh "echo ${ENV_URL}"
                 sh "env"
-                sh "sleep 60"
+                sh "sleep 120"
             }
         }
         stage("Third Stage") {
