@@ -30,7 +30,7 @@ pipeline {
                 sh "echo We will do CICD Tomorrow using Jenkins"
                 sh "echo ${ENV_URL}"
                 sh "env"
-                sh "sleep 120"
+                sh "sleep 1"
             }
         }
         stage("Third Stage") {
