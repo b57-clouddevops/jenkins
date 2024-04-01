@@ -15,11 +15,15 @@ pipeline {
         booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
         choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
     }
+    tools {
+        maven 'mvn-395' 
+    }
     stages {
         stage("First Stage") {
             steps {
                 sh "echo Welcome World!"
                 sh "echo ${ENV_URL}"
+                sh "mvn --version"
             }
         }
         stage("Second Stage") {
