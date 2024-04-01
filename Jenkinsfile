@@ -16,6 +16,7 @@ pipeline {
             } 
             steps {
                 echo "We will do CICD Tomorrow using Jenkins"
+                sh "echo ${ENV_URL}"
             }
         }
         stage("Third Stage") {
