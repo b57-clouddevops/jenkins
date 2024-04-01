@@ -9,7 +9,7 @@ pipeline {
         disableConcurrentBuilds()
         timeout(time: 1, unit: 'MINUTES')
     }
-    triggers { PollSCM('*/1 * * * *') }
+    triggers { pollSCM('*/1 * * * *') }
     parameters {
         string(name: 'COMPONENT', defaultValue: 'mongodb', description: 'Enter the component')
         text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
