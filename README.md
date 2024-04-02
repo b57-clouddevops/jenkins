@@ -1,8 +1,6 @@
 # jenkins
 
-We are going to place the learning of our Jenkins starting from basics to advanced in this repository
-
-
+We are going to place the learning of our Jenkins starting from basics to advanced in this repositor
 
 # Backlog 
 
@@ -11,7 +9,6 @@ We are going to place the learning of our Jenkins starting from basics to advanc
     So that when there is any commit on xyz-repo, jenins-xyx would be triggered automatically.
 ```
 
-
 Imp : Stages on jenkins are sequential, that means stage 2 will only run after the completion of stage-1 
 
 
@@ -19,10 +16,8 @@ Jenkins is all about plugins ?
 A plug-in is nothing but a feature, if you want a feature, install that plugin.
 
 
-
 ### What if one of the JOB that you're running on jenkins go crazy and run the the for indefintiely & exhausts the resources ?
     > Jenkins will recounter out of memory or outOfResources error and untimately jenkins will be down which is a potential loss to teams.
-
 
 ### What all could be the reasons on why a machine/server can go down ?
 
@@ -48,7 +43,6 @@ A plug-in is nothing but a feature, if you want a feature, install that plugin.
         *   Jenkins authenticates using ssh, so make sure you node and jenkins can communicate with each other 
         *   Ensure the security of the NODE Machine has 22 open for the Jenkins Controller ( Jenkins should be able to ssh to the agent machine )
 
-
 ### How can we control the number of jobs that runs on a specfic agent ?
     * We need to define that option while configuring the agent and we refer that as "Number Of Executors"
 
@@ -56,3 +50,17 @@ A plug-in is nothing but a feature, if you want a feature, install that plugin.
 ### If you have 24 nodes that are added to your Jenkins-Controller and you don't have access to them ? How can you see the disk utilization or the space availability on the top of them ?
 
 > You can see that information on the top of Manage Jenkins ---> Nodes ( it shows you the available free space )
+
+
+### Can we configure warnings in jenkins for the nodes, if any of the nodes of the controller (jenkins) utilize 80% of the disk ?
+    *   Yes, that's doable
+
+### If the response time between JENKINS & the agent is not acceptable or if the roundTrip is above the unaccpeted values, can we mark the agent as Offline ? yes
+    *   This monitors the round trip network response time from the controller to the agent, and if it goes above a threshold repeatedly, it disconnects the agent.
+
+    *   This is useful for detecting unresponsive agents, or other network problems that clog the communication channel. More specifically, the controller sends a no-op command to the agent, and checks the time it takes to get back the result of this no-op command.
+
+### In how many ways can we add Node to jenkins-controller ?
+
+    *   Adding the node details from the Jenkins-UI 
+    *   From the node itself, we can run the JNLP Commands  ( AutoScaling ----> startupScript ( jnlp command) ) 
