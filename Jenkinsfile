@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label 'ws'
+    }
     environment {
         ENV_URL = "pipeline.google.com"                          // Global Variable : All the stages of the pipeline can inherit this
         SSHCRED = credentials('SSHCRED')
@@ -25,6 +27,7 @@ pipeline {
                 sh "echo Welcome World!"
                 sh "echo ${ENV_URL}"
                 sh "mvn --version"
+                sh "uname -a"
             }
         }
         stage("Second Stage") {
