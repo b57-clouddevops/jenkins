@@ -6,7 +6,6 @@ pipeline {
     }
     parameters {
         choice(name: 'ENV', choices: ['dev', 'prod'], description: 'Select the environment')
-        choice(name: 'ACTION', choices: ['apply', 'destroy'], description: 'Select apply or destroy')
     }
     stages {
         stage('Creating VPC') {
