@@ -21,6 +21,19 @@ pipeline {
                 }
             }
         }
+
+        stage('Destroying ALB') {
+            steps {
+                dir('VPC') {
+                git branch: 'main', url: 'https://github.com/b57-clouddevops/terraform-loadbalancers.git'
+                        sh '''
+                            terrafile -f env-dev/Terrafile
+                            terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars
+                            terraform destroy -auto-approve -var-file=env-${ENV}/${ENV}.tfvars -var ENV=${ENV}
+                        '''
+                }
+            }
+        }
         stage('Destroying VPC') {
             steps {
                 dir('VPC') {
