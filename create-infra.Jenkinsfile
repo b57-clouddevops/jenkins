@@ -45,7 +45,6 @@ pipeline {
                 dir('DB') {
                 git branch: 'main', url: 'https://github.com/b57-clouddevops/terraform-databases.git'
                         sh '''
-                            rm -rf .terraform
                             terrafile -f env-dev/Terrafile
                             terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars
                             terraform plan -var-file=env-${ENV}/${ENV}.tfvars -var ENV=${ENV}
@@ -75,7 +74,6 @@ pipeline {
                         dir('user') {  git branch: 'main', url: 'https://github.com/b56-clouddevops/user.git'
                                 sh ''' 
                                     cd mutable-infra
-                                    rm -rf .terraform
                                     terrafile -f env-${ENV}/Terrafile
                                     terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure
                                     terraform plan -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=007
@@ -89,7 +87,6 @@ pipeline {
                         dir('cart') { git branch: 'main', url: 'https://github.com/b56-clouddevops/cart.git'
                                 sh ''' 
                                     cd mutable-infra
-                                    rm -rf .terraform
                                     terrafile -f env-${ENV}/Terrafile
                                     terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure
                                     terraform plan -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=007
@@ -103,7 +100,6 @@ pipeline {
                         dir('shipping') { git branch: 'main', url: 'https://github.com/b56-clouddevops/shipping.git'
                                 sh ''' 
                                     cd mutable-infra
-                                    rm -rf .terraform
                                     terrafile -f env-${ENV}/Terrafile
                                     terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure
                                     terraform plan -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=001
