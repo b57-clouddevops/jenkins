@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Backend') {
             parallel {
-                stage('destroying Catalogue') {
+                stage('destroyinh Catalogue') {
                     steps {
                         dir('catalogue') {   
                             git branch: 'main', url: 'https://github.com/b56-clouddevops/catalogue.git'
@@ -18,6 +18,7 @@ pipeline {
                                     cd mutable-infra
                                     terrafile -f env-${ENV}/Terrafile
                                     terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure
+                                    terraform plan -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=007
                                     terraform destroy -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=007 -auto-approve
                                 ''' 
                             }
@@ -31,6 +32,7 @@ pipeline {
                                     rm -rf .terraform
                                     terrafile -f env-${ENV}/Terrafile
                                     terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure
+                                    terraform plan -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=007
                                     terraform destroy -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=007 -auto-approve
                                 ''' 
                             }
@@ -44,6 +46,7 @@ pipeline {
                                     rm -rf .terraform
                                     terrafile -f env-${ENV}/Terrafile
                                     terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure
+                                    terraform plan -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=007
                                     terraform destroy -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=007 -auto-approve
                                 ''' 
                             }
@@ -57,6 +60,7 @@ pipeline {
                                     rm -rf .terraform
                                     terrafile -f env-${ENV}/Terrafile
                                     terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure
+                                    terraform plan -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=007
                                     terraform destroy -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=007 -auto-approve
                                 ''' 
                         }
@@ -70,6 +74,7 @@ pipeline {
                                     rm -rf .terraform
                                     terrafile -f env-${ENV}/Terrafile
                                     terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure
+                                    terraform plan -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=007
                                     terraform destroy -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=001 -auto-approve
                                 ''' 
                         }
