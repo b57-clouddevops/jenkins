@@ -58,7 +58,7 @@ pipeline {
                 stage('creating Catalogue') {
                     steps {
                         dir('catalogue') {   
-                            git branch: 'main', url: 'https://github.com/b56-clouddevops/catalogue.git'
+                            git branch: 'main', url: 'https://github.com/b57-clouddevops/catalogue.git'
                                 sh ''' 
                                     cd mutable-infra
                                     terrafile -f env-${ENV}/Terrafile
@@ -71,7 +71,7 @@ pipeline {
                     } 
                 stage('creating User') {
                     steps {
-                        dir('user') {  git branch: 'main', url: 'https://github.com/b56-clouddevops/user.git'
+                        dir('user') {  git branch: 'main', url: 'https://github.com/b57-clouddevops/user.git'
                                 sh ''' 
                                     cd mutable-infra
                                     terrafile -f env-${ENV}/Terrafile
@@ -84,7 +84,7 @@ pipeline {
                     }
                 stage('creating Cart') {
                     steps {
-                        dir('cart') { git branch: 'main', url: 'https://github.com/b56-clouddevops/cart.git'
+                        dir('cart') { git branch: 'main', url: 'https://github.com/b57-clouddevops/cart.git'
                                 sh ''' 
                                     cd mutable-infra
                                     terrafile -f env-${ENV}/Terrafile
@@ -97,7 +97,7 @@ pipeline {
                 }
                 stage('creating Shipping') {
                     steps {
-                        dir('shipping') { git branch: 'main', url: 'https://github.com/b56-clouddevops/shipping.git'
+                        dir('shipping') { git branch: 'main', url: 'https://github.com/b57-clouddevops/shipping.git'
                                 sh ''' 
                                     cd mutable-infra
                                     terrafile -f env-${ENV}/Terrafile
@@ -113,7 +113,7 @@ pipeline {
     stage('creating frontend') {
             steps {
                 dir('frontend') {   
-                    git branch: 'main', url: 'https://github.com/b56-clouddevops/frontend.git'
+                    git branch: 'main', url: 'https://github.com/b57-clouddevops/frontend.git'
                             sh ''' 
                                 cd mutable-infra
                                     terrafile -f env-${ENV}/Terrafile
