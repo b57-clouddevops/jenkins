@@ -53,8 +53,7 @@ pipeline {
                 }
             }
         }
-        stage('Backend') {
-            parallel {
+
                 stage('creating Catalogue') {
                     steps {
                         dir('catalogue') {   
@@ -121,8 +120,7 @@ pipeline {
                         }
                     }
                 }
-            }
-        }
+
     stage('creating frontend') {
             steps {
                 dir('frontend') {   
