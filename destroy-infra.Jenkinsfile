@@ -23,9 +23,9 @@ pipeline {
                             }
                         }
                     } 
-                stage('destroying frontend') {
+                stage('destroying payment') {
                     steps {
-                        dir('user') {  git branch: 'main', url: 'https://github.com/b57-clouddevops/frontend.git'
+                        dir('user') {  git branch: 'main', url: 'https://github.com/b57-clouddevops/payment.git'
                                 sh ''' 
                                     cd mutable-infra
                                     terrafile -f env-${ENV}/Terrafile
