@@ -133,12 +133,13 @@ pipeline {
                     dir('frontend') {   
                         git branch: 'main', url: 'https://github.com/b57-clouddevops/frontend.git'
                                 sh ''' 
+                                    sleep 30
                                     cd mutable-infra
                                     rm -rf .terraform
-                                        terrafile -f env-${ENV}/Terrafile
-                                        terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure
-                                        terraform plan -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=010 
-                                        terraform apply -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=010 -auto-approve
+                                    terrafile -f env-${ENV}/Terrafile
+                                    terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure
+                                    terraform plan -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=010 
+                                    terraform apply -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=010 -auto-approve
                                     ''' 
                                 }
                             }
