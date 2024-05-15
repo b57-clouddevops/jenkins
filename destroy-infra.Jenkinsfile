@@ -10,6 +10,19 @@ pipeline {
     stages {
         stage('Backend') {
             parallel {
+                stage('destroying payment') {
+                    steps {
+                        dir('user') {  git branch: 'main', url: 'https://github.com/b57-clouddevops/payment.git'
+                                sh ''' 
+                                    cd mutable-infra
+                                    terrafile -f env-${ENV}/Terrafile
+                                    terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure
+                                    terraform destroy -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=007 -auto-approve || true
+                                ''' 
+                            }
+                        }
+                    }
+                    
                 stage('destroyinh Catalogue') {
                     steps {
                         dir('catalogue') {   
@@ -23,18 +36,7 @@ pipeline {
                             }
                         }
                     } 
-                // stage('destroying payment') {
-                //     steps {
-                //         dir('user') {  git branch: 'main', url: 'https://github.com/b57-clouddevops/payment.git'
-                //                 sh ''' 
-                //                     cd mutable-infra
-                //                     terrafile -f env-${ENV}/Terrafile
-                //                     terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure
-                //                     terraform destroy -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=007 -auto-approve || true
-                //                 ''' 
-                //             }
-                //         }
-                //     }
+
                 stage('destroying User') {
                     steps {
                         dir('user') {  git branch: 'main', url: 'https://github.com/b57-clouddevops/user.git'
