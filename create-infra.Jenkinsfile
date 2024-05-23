@@ -2,7 +2,7 @@
 pipeline {
     agent any 
     options {
-        ansiColor('xterm')
+        // ansiColor('xterm')
         buildDiscarder(logRotator(numToKeepStr: '1')) 
         disableConcurrentBuilds()
         timeout(time: 35, unit: 'MINUTES')

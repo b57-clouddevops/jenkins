@@ -2,7 +2,7 @@
 pipeline {
     agent any 
     options {
-        ansiColor('xterm')
+        // ansiColor('xterm')
     }
     parameters {
         choice(name: 'ENV', choices: ['dev', 'prod'], description: 'Select the environment')
@@ -72,6 +72,19 @@ pipeline {
                                     terrafile -f env-${ENV}/Terrafile
                                     terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure
                                     terraform destroy -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=001 -auto-approve || true
+                                ''' 
+                        }
+                    }
+                }
+                stage('destroying payment') {
+                    steps {
+                        dir('cart') { git branch: 'main', url: 'https://github.com/b57-clouddevops/payment.git'
+                                sh ''' 
+                                    cd mutable-infra
+                                    rm -rf .terraform
+                                    terrafile -f env-${ENV}/Terrafile
+                                    terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure
+                                    terraform destroy -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=007 -auto-approve || true
                                 ''' 
                         }
                     }
