@@ -26,6 +26,18 @@ pipeline {
             }
         }
 
+
+        stage('Creating EKS') {
+            steps {
+                dir('k8s') {
+                git branch: 'main', url: 'https://github.com/b57-clouddevops/kubernetes.git'
+                        sh '''
+                            cd eks
+                            make create
+                        '''
+                }
+            }
+        }
         stage('Creating Databases') {
             steps {
                 dir('DB') {
@@ -40,32 +52,6 @@ pipeline {
                 }
             }
         }
-        stage('Creating EKS') {
-            steps {
-                dir('k8s') {
-                git branch: 'main', url: 'https://github.com/b57-clouddevops/kubernetes.git'
-                        sh '''
-                            cd eks
-                            make create
-                        '''
-                }
-            }
-        }
-
-        // stage('Creating Databases') {
-        //     steps {
-        //         dir('DB') {
-        //         git branch: 'main', url: 'https://github.com/b57-clouddevops/terraform-databases.git'
-        //                 sh '''
-        //                     rm -rf .terraform
-        //                     terrafile -f env-dev/Terrafile
-        //                     terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure
-        //                     terraform plan -var-file=env-${ENV}/${ENV}.tfvars -var ENV=${ENV}
-        //                     terraform apply -auto-approve -var-file=env-${ENV}/${ENV}.tfvars -var ENV=${ENV}
-        //                 '''
-        //         }
-        //     }
-        // }
     }
 }
 
